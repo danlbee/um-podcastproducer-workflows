@@ -68,13 +68,13 @@
             arguments = (
               encode,
               "--basedir=$$Base Directory$$",
-              "--input=$$Content File Basename$$$$Content File Extension$$",
+              "--input=$$Content File Basename$$-titled.mov",
               "--output=$$Content File Basename$$-video.m4v",
               "--encoder=ipod"
             );
           };
           publish_audio_to_itunesu = {
-            dependsOnTasks = (encode_audio); 
+            dependsOnTasks = (encode_audio, encode_video); 
             command = "/usr/bin/pcastaction";
             arguments = (
               iTunesU,
@@ -94,7 +94,7 @@
             );
           };
           publish_video_to_itunesu = {
-            dependsOnTasks = (encode_video); 
+            dependsOnTasks = (encode_video, encode_audio); 
             command = "/usr/bin/pcastaction";
             arguments = (
               iTunesU,
