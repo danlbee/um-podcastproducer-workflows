@@ -63,7 +63,7 @@
             );
           };
           encode_video = {
-            dependsOnTasks = (preflight);
+            dependsOnTasks = (add_intro_to_video, add_exit_to_video);
             command = "/usr/bin/pcastaction";
             arguments = (
               encode,
