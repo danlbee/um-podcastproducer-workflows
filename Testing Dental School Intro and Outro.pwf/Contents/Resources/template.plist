@@ -42,8 +42,8 @@
             arguments = (
               merge,
               "--basedir=$$Base Directory$$",
-              "--input1=$$Content File Basename$$$$Content File Extension$$",
-              "--input2=$$Introduction Video Path$$",
+              "--input1=$$Introduction Video Path$$",
+              "--input2=$$Content File Basename$$$$Content File Extension$$",
               "--transition=$$Quartz Composer Exit Transition$$",
               "--duration=$$Intro Transition Duration$$",
               "--output=$$Content File Basename$$-with-intro.mov"
