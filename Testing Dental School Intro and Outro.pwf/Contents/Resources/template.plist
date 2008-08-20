@@ -49,7 +49,19 @@
               "--output=$$Content File Basename$$-titled.mov"
             );
           };
-          add_exit_to_video = {};
+          add_exit_to_video = {
+            dependsOnTasks = (add_intro_to_video);
+            command = "/usr/bin/pcastaction";
+            arguments = (
+              merge,
+              "--basedir=$$Base Directory$$",
+              "--input1=$$Content File Basename$$-titled.mov",
+              "--input2=$$Exit Video Path$$",
+              "--transition=$$Quartz Composer Exit Transition$$",
+              "--duration=$$Exit Transition Duration$$",
+              "--output=$$Content File Basename$$-titled.mov"
+            );
+          };
           encode_video = {
             dependsOnTasks = (preflight);
             command = "/usr/bin/pcastaction";
