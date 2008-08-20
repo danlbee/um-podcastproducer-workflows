@@ -1,7 +1,4 @@
-/*
-  Upload to SI539
-  
-*/
+// Upload to Dental School Testing Area - with Intro and Outro 
 (
     {
         name = "$$Xgrid Job Name$$"; 
@@ -24,6 +21,8 @@
               "--basedir=$$Base Directory$$"
             );
           };
+          
+          // Handle the Audio by encoding it for iPod
           encode_audio = {
             dependsOnTasks = (preflight); 
             command = "/usr/bin/pcastaction";
@@ -36,6 +35,7 @@
             );
           };
           
+          // Handle the video by adding pre-roll and post-roll video to it
           add_intro_to_video = {
             dependsOnTasks = (preflight);
             command = "/usr/bin/pcastaction";
@@ -46,7 +46,7 @@
               "--input2=$$Introduction Video Path$$",
               "--transition=$$Quartz Composer Exit Transition$$",
               "--duration=$$Intro Transition Duration$$",
-              "--output=$$Content File Basename$$-titled.mov"
+              "--output=$$Content File Basename$$-with-intro.mov"
             );
           };
           add_exit_to_video = {
@@ -55,24 +55,33 @@
             arguments = (
               merge,
               "--basedir=$$Base Directory$$",
-              "--input1=$$Content File Basename$$-titled.mov",
+              "--input1=$$Content File Basename$$-with-intro.mov",
               "--input2=$$Exit Video Path$$",
               "--transition=$$Quartz Composer Exit Transition$$",
               "--duration=$$Exit Transition Duration$$",
-              "--output=$$Content File Basename$$-titled.mov"
+              "--output=$$Content File Basename$$-with-exit.mov"
             );
           };
+          
+          // Encode the combined intro|video|exit video
           encode_video = {
             dependsOnTasks = (add_intro_to_video, add_exit_to_video);
             command = "/usr/bin/pcastaction";
             arguments = (
               encode,
               "--basedir=$$Base Directory$$",
-              "--input=$$Content File Basename$$-titled.mov",
+              "--input=$$Content File Basename$$-with-exit.mov",
               "--output=$$Content File Basename$$-video.m4v",
               "--encoder=ipod"
             );
           };
+          
+          // Publish:
+          // After video has been intro/outro'ed and ecoded
+          // and audio has been encoded
+          // send both finished files off to iTunes U
+          // We wait on both encoding tasks so
+          // if upload fails we still end up with usable files
           publish_audio_to_itunesu = {
             dependsOnTasks = (encode_audio, encode_video); 
             command = "/usr/bin/pcastaction";
