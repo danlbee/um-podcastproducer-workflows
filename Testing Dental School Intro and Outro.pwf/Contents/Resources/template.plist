@@ -35,7 +35,20 @@
               "--encoder=mp4_audio_high"
             );
           };
-          add_intro_to_video = {};
+          
+          add_intro_to_video = {
+            dependsOnTasks = (preflight);
+            command = "/usr/bin/pcastaction";
+            arguments = (
+              merge,
+              "--basedir=$$Base Directory$$",
+              "--input1=$$Content File Basename$$$$Content File Extension$$",
+              "--input2=$$Introduction Video Path$$",
+              "--transition=$$Quartz Composer Exit Transition$$",
+              "--duration=$$Intro Transition Duration$$",
+              "--output=$$Content File Basename$$-titled.mov"
+            );
+          };
           add_exit_to_video = {};
           encode_video = {
             dependsOnTasks = (preflight);
