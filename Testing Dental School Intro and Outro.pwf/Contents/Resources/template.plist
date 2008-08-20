@@ -35,6 +35,8 @@
               "--encoder=mp4_audio_high"
             );
           };
+          add_intro_to_video = {};
+          add_exit_to_video = {};
           encode_video = {
             dependsOnTasks = (preflight);
             command = "/usr/bin/pcastaction";
