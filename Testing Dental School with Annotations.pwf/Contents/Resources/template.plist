@@ -35,17 +35,7 @@
               "--encoder=mp4_audio_high"
             );
           };
-          encode_video = {
-            dependsOnTasks = (preflight);
-            command = "/usr/bin/pcastaction";
-            arguments = (
-              encode,
-              "--basedir=$$Base Directory$$",
-              "--input=$$Content File Basename$$$$Content File Extension$$",
-              "--output=$$Content File Basename$$-video.m4v",
-              "--encoder=ipod"
-            );
-          };
+  
           annotate_audio = {
             dependsOnTasks = (encode_audio);
             command = "/usr/bin/pcastaction";
@@ -62,7 +52,7 @@
             );
           };
           publish_audio_to_itunesu = {
-            dependsOnTasks = (encode_audio); 
+            dependsOnTasks = (annotate_audio); 
             command = "/usr/bin/pcastaction";
             arguments = (
               iTunesU,
@@ -75,26 +65,6 @@
               "--credential=$$iTunes U Posting Credentials$$",
               "--display_name=NAME",
               "--email=EMAIL",
-              "--user=SHORTNAME ",
-              "--user_id=0",
-              "--pcast_server=$$Podcast Producer URL$$",
-              "--otp=##iTunes U Shared Secret##"
-            );
-          };
-          publish_video_to_itunesu = {
-            dependsOnTasks = (encode_video); 
-            command = "/usr/bin/pcastaction";
-            arguments = (
-              iTunesU,
-              "--basedir=$$Base Directory$$",
-              "--input=$$Content File Basename$$-video.m4v",
-              "--title=$$Title$$",
-              "--description=$$Description$$",
-              "--site_url=$$iTunes U Site URL$$",
-              "--tab_id=1419234028.01419234030",
-              "--credential=$$iTunes U Posting Credentials$$",
-              "--display_name=NAME",
-              "--email=EMAIL ",
               "--user=SHORTNAME ",
               "--user_id=0",
               "--pcast_server=$$Podcast Producer URL$$",
