@@ -62,7 +62,7 @@
             );
           };
           publish_audio_to_itunesu = {
-            dependsOnTasks = (encode_audio); 
+            dependsOnTasks = (annotate_audio); 
             command = "/usr/bin/pcastaction";
             arguments = (
               iTunesU,
