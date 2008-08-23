@@ -48,11 +48,9 @@
           };
           annotate_audio = {
             dependsOnTasks = (encode_audio);
-            command = "/usr/bin/pcastaction";
+            command = "/usr/libexec/podcastproducer/qtannotate";
             arguments = (
-              annotate,
-              "--basedir=$$Base Directory$$",
-              "--input=$$Content File Basename$$-audio.m4v",
+              "$$Content File Basename$$-audio.m4v",
               "--author=Trek Glowacki",
               "--keywords=key",
               "--title=I changed the title yo",
