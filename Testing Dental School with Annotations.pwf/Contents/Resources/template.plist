@@ -51,12 +51,7 @@
             command = "/usr/libexec/podcastproducer/qtannotate";
             arguments = (
               "$$Content File Basename$$$$Content File Extension$$",
-              "--author=Trek Glowacki",
-              "--keywords=keya keyb",
-              "--title=I changed the title yo",
-              "--description=this is the description",
-              "--comment=comments? don't need em",
-              "--copyright=2008 Me"
+              "--author=Trek",
             );
           };
           annotate_video = {
