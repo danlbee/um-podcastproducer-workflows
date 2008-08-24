@@ -50,7 +50,7 @@
             dependsOnTasks = (encode_audio);
             command = "/usr/libexec/podcastproducer/qtannotate";
             arguments = (
-              "$$Content File Basename$$-audio.m4v",
+              "$$Content File Basename$$$$Content File Extension$$",
               "--author=Trek Glowacki",
               "--keywords=keya keyb",
               "--title=I changed the title yo",
