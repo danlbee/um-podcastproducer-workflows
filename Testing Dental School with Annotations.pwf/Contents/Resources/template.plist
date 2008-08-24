@@ -112,8 +112,22 @@
               "--otp=##iTunes U Shared Secret##"
             );
           };
-          postflight = {
+          archive = {
             dependsOnTasks = (publish_audio_to_itunesu, publish_video_to_itunesu);
+            command = "/usr/bin/pcastaction";
+            arguments = (
+              archive,
+              "--basedir=$$Base Directory$$",
+              "--file=$$Content File Basename$$$$Content File Extension$$",
+              "--title=$$Title$$",
+              "--format=archive",
+              "--archive_folder=$$Archive Root$$",
+              "--use_day_folders=YES",
+              "--create_folder=YES"
+            );
+          };
+          postflight = {
+            dependsOnTasks = (archive);
             command = "/usr/bin/pcastaction";
             arguments = (
               postflight,
